@@ -1,5 +1,20 @@
+h1 {
+    text-align: center;
+}
+.container{
+    max-width: 310px;
+}
 .table-style{
+    /* outer table styles */
+    margin-left: 3rem;
     width: 300px;
     height: 300px;
     border: 2px solid black;
+}
+td{
+ width: 100px;
+ height: 100px;
+ border: 2px solid black;
+ text-align: center;
+ font-size: 2rem;
 }
