@@ -1,3 +1,15 @@
+/* set colors for joueur1  and joueur2 */
+.joueur1{
+    color: red;
+    text-align: center;
+}
+.joueur2{
+    color: blue;
+    text-align: center;
+}
+
+
+
 h1 {
     text-align: center;
 }
