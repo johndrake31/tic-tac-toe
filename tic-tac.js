@@ -21,7 +21,7 @@ function ChangeTurn() {
 
 /** 
  * Event Listener Logic. Clicks based on turn will return an "X" or "O".
- * if 3 are in a row veritcal, diagonal, or horizontal the player wins.
+ * if 3 are in a row vertical, diagonal, or horizontal the player wins.
  * else game is a tie.
  * 
  */
@@ -29,12 +29,8 @@ tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
         ChangeTurn();
-        /** 
-         * Is if(){} logics to replaces inner HTML of the Cell 
-         * based on player turns. If Player1 "X" if Player2 "O".
-         * You can use below code snipet to update the innerHTML.
-         */
-        btnArea.innerHTML = "B";
+        // Replaces inner HTML of the Cell
+        btnArea.innerHTML = "X";
 
     })
 });
