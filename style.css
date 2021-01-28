@@ -1,20 +1,13 @@
 /* set colors for joueur1  and joueur2 */
 .joueur1{
-<<<<<<< HEAD
     color:#E17327;
-=======
->>>>>>> 2f35196b532e64cb72447e43e36d2d6d2bfb2a31
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
     font-weight: 500;
 }
 .joueur2{
-<<<<<<< HEAD
     color:#932191;
-=======
-    
->>>>>>> 2f35196b532e64cb72447e43e36d2d6d2bfb2a31
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
