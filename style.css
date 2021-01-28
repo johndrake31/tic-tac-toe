@@ -1,13 +1,13 @@
 /* set colors for joueur1  and joueur2 */
 .joueur1{
-    color:#E17327;
+    color:blue;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
     font-weight: 500;
 }
 .joueur2{
-    color:#932191;
+    color: red;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
