@@ -11,7 +11,6 @@ function ChangeTurn() {
         joueur2Turn = true;
         playerTurnMsg.innerHTML = "Joueur 2 : c'est votre tour"
         playerTurnMsg.className = "joueur2"
-        alert("here");
     } else {
         joueur1Turn = true;
         joueur2Turn = false;
@@ -31,7 +30,13 @@ tdClickArea.forEach(item => {
         let btnArea = e.target;
         ChangeTurn();
         // Replaces inner HTML of the Cell
-        btnArea.innerHTML = "X";
+        if (playerTurnMsg.className == "joueur1") {
+            btnArea.innerHTML = "X";
+        }
+        else {
+            btnArea.innerHTML = "O";
+        }
+
 
     })
 });
