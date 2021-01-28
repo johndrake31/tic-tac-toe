@@ -2,8 +2,9 @@ const tdClickArea = document.querySelectorAll("td");
 const playerTurnMsg = document.getElementById('player-turn');
 
 //Game vars
-let joueur1Turn = false;
-let joueur2Turn = true;
+let joueur1Turn = true;
+let joueur2Turn = false;
+playerTurnMsg.className = "joueur1"
 
 function ChangeTurn() {
     if (joueur1Turn) {
@@ -28,14 +29,22 @@ function ChangeTurn() {
 tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
-        ChangeTurn();
-        // Replaces inner HTML of the Cell
-        if (playerTurnMsg.className == "joueur1") {
-            btnArea.innerHTML = "X";
+        if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
+            alert("tricheur! vous perdez votre tour")
+            ChangeTurn();
+
         }
         else {
-            btnArea.innerHTML = "O";
+
+            if (playerTurnMsg.className == "joueur1") {
+                btnArea.innerHTML = "X";
+            }
+            else {
+                btnArea.innerHTML = "O";
+            }
+            ChangeTurn();
         }
+
 
 
     })
