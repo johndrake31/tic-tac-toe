@@ -1,14 +1,23 @@
 /* set colors for joueur1  and joueur2 */
 .joueur1{
-    color: red;
+    color:blue;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
 }
 .joueur2{
-    color: blue;
+    color: red;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
+/*Delphine add styles to new-game button*/
+#new-game{
 
+}
 
 h1{
     text-align: center;
