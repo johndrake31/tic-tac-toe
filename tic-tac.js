@@ -29,7 +29,11 @@ tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
         ChangeTurn();
-        // Replaces inner HTML of the Cell
+        /** 
+         * Is if(){} logics to replaces inner HTML of the Cell 
+         * based on player turns. If Player1 "X" if Player2 "O".
+         * You can use below code snipet to update the innerHTML.
+         */
         btnArea.innerHTML = "B";
 
     })
