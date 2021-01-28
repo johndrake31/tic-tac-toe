@@ -1,5 +1,6 @@
 /* set colors for joueur1  and joueur2 */
 .joueur1{
+
     color:#E17327;
     text-align: center;
     font-family: 'Poppins', sans-serif;
@@ -7,6 +8,7 @@
     font-weight: 500;
 }
 .joueur2{
+
     color:#932191;
     text-align: center;
     font-family: 'Poppins', sans-serif;
