@@ -11,6 +11,7 @@ function ChangeTurn() {
         joueur2Turn = true;
         playerTurnMsg.innerHTML = "Joueur 2 : c'est votre tour"
         playerTurnMsg.className = "joueur2"
+        alert("here");
     } else {
         joueur1Turn = true;
         joueur2Turn = false;
@@ -21,7 +22,7 @@ function ChangeTurn() {
 
 /** 
  * Event Listener Logic. Clicks based on turn will return an "X" or "O".
- * if 3 are in a row veritcal, diagonal, or horizontal the player wins.
+ * if 3 are in a row vertical, diagonal, or horizontal the player wins.
  * else game is a tie.
  * 
  */
@@ -30,7 +31,7 @@ tdClickArea.forEach(item => {
         let btnArea = e.target;
         ChangeTurn();
         // Replaces inner HTML of the Cell
-        btnArea.innerHTML = "B";
+        btnArea.innerHTML = "X";
 
     })
 });
