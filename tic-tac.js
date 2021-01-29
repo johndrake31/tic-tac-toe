@@ -1,5 +1,6 @@
 const tdClickArea = document.querySelectorAll("td");
 const playerTurnMsg = document.getElementById('player-turn');
+const resultMessage = document.getElementById("resultMessage");
 var theSquaresValues = [];
 var counter = 0;
 
@@ -23,10 +24,15 @@ function changeTurn() {
 }
 function endGameEvaluation(counter) {
     if (counter == 9) {
-        alert("end of the game")
-        resetGame()
+        resultMessage.innerHTML = "End of the game!";
+        resetGame();
     }
 }
+function resetGame() {
+
+
+}
+
 
 /** 
  * Event Listener Logic. Clicks based on turn will return an "X" or "O".
@@ -54,9 +60,9 @@ tdClickArea.forEach(item => {
             }
 
             counter++;
-
             changeTurn();
             endGameEvaluation(counter);
+
 
         }
 
