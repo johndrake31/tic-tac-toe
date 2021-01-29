@@ -21,6 +21,12 @@ function changeTurn() {
         playerTurnMsg.className = "joueur1"
     }
 }
+function endGameEvaluation(counter) {
+    if (counter == 9) {
+        alert("end of the game")
+        resetGame()
+    }
+}
 
 /** 
  * Event Listener Logic. Clicks based on turn will return an "X" or "O".
@@ -31,32 +37,30 @@ function changeTurn() {
 tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
-        if (counter == 9) {
-            alert("end of the game")
-            resetGame()
+
+
+        if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
+            alert("tricheur! vous perdez votre tour")
+            changeTurn();
         }
         else {
 
+            if (playerTurnMsg.className == "joueur1") {
+                btnArea.innerHTML = "X";
 
-            if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
-                alert("tricheur! vous perdez votre tour")
-                changeTurn();
             }
-            else {
-
-                if (playerTurnMsg.className == "joueur1") {
-                    btnArea.innerHTML = "X";
-                }
-                else {
-                    btnArea.innerHTML = "O";
-                }
-                counter++;
+            else if (playerTurnMsg.className == "joueur2") {
+                btnArea.innerHTML = "O";
             }
 
+            counter++;
 
             changeTurn();
-        }
-    }
+            endGameEvaluation(counter);
 
+        }
+
+    }
     )
+
 });
