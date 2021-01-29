@@ -6,6 +6,7 @@
     font-family: 'Poppins', sans-serif;
     font-size: 1.1rem;
     font-weight: 500;
+    width: 300px;
   
 }
 .joueur2{
@@ -15,14 +16,13 @@
     font-family: 'Poppins', sans-serif;
     font-size: 1.1rem;
     font-weight: 500;
+    width: 300px;
    
     
 }
 
 #new-game{
-position: relative;
-top: 100px;
-left: 150px;
+display: inline-block;
 border: 2px solid #E17327;
 background-color: #f4f4f4;
 border-radius: 5px;
@@ -30,11 +30,37 @@ color: #333;
 padding: 10px 15px;
 font-weight: 500;
 text-decoration: none;
+margin: auto;
+position: relative;
+top: 100px;
+left: 97px;
+transition: all 1s ease-in-out;
+text-align: center;
+animation: anim1 10s forwards ease-in-out;
 }
 #new-game:hover {
-    background-color:#E17327;
+    background-color: #E17327;
     color: #f4f4f4;
+    transform: rotate(360deg);
 }
+@keyframes anim1 {
+    25% {
+        background-color: #932191;
+      
+    }
+   50% {
+       background-color: #E17327;
+   }
+   75% {
+       background-color:#932191 ;
+      
+   }
+   100% {
+       background-color: #E17327;
+       
+   }
+}
+
 h1{
     text-align: center;
 }
@@ -46,10 +72,11 @@ h3{
 }
 .container{
     max-width: 310px;
+    margin: auto;  /* Modified to auto */
 }
 .table-style{
     /* outer table styles */
-    margin-left: 3rem;
+    
     width: 300px;
     height: 300px;
     border: 8px solid rgb(123, 64, 171);
