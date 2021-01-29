@@ -45,12 +45,10 @@ tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
 
-
         if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
             alert("tricheur! vous perdez votre tour")
             changeTurn();
         } else {
-
             if (joueur1Turn) {
                 btnArea.innerHTML = "X";
             } else if (joueur2Turn) {
