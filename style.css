@@ -54,11 +54,9 @@ animation: anim1 10s forwards ease-in-out;
    }
    75% {
        background-color:#932191 ;
-      
    }
    100% {
        background-color: #E17327;
-       
    }
 }
 
