@@ -22,17 +22,18 @@ function changeTurn() {
         playerTurnMsg.className = "joueur1"
     }
 }
+
 function endGameEvaluation(counter) {
     if (counter == 9) {
         resultMessage.innerHTML = "End of the game!";
-        resetGame();
     }
 }
+
 function resetGame() {
-
-
+    tdClickArea.forEach(item => {
+        item.innerHTML = "";
+    })
 }
-
 
 /** 
  * Event Listener Logic. Clicks based on turn will return an "X" or "O".
@@ -48,25 +49,16 @@ tdClickArea.forEach(item => {
         if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
             alert("tricheur! vous perdez votre tour")
             changeTurn();
-        }
-        else {
+        } else {
 
-            if (playerTurnMsg.className == "joueur1") {
+            if (joueur1Turn) {
                 btnArea.innerHTML = "X";
-
-            }
-            else if (playerTurnMsg.className == "joueur2") {
+            } else if (joueur2Turn) {
                 btnArea.innerHTML = "O";
             }
-
             counter++;
             changeTurn();
             endGameEvaluation(counter);
-
-
         }
-
-    }
-    )
-
+    })
 });
