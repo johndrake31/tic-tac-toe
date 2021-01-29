@@ -1,11 +1,14 @@
 const tdClickArea = document.querySelectorAll("td");
 const playerTurnMsg = document.getElementById('player-turn');
+var theSquaresValues = [];
+var counter = 0;
 
 //Game vars
-let joueur1Turn = false;
-let joueur2Turn = true;
+let joueur1Turn = true;
+let joueur2Turn = false;
+playerTurnMsg.className = "joueur1"
 
-function ChangeTurn() {
+function changeTurn() {
     if (joueur1Turn) {
         joueur1Turn = false;
         joueur2Turn = true;
@@ -18,6 +21,12 @@ function ChangeTurn() {
         playerTurnMsg.className = "joueur1"
     }
 }
+function endGameEvaluation(counter) {
+    if (counter == 9) {
+        alert("end of the game")
+        resetGame()
+    }
+}
 
 /** 
  * Event Listener Logic. Clicks based on turn will return an "X" or "O".
@@ -28,9 +37,30 @@ function ChangeTurn() {
 tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
-        ChangeTurn();
-        // Replaces inner HTML of the Cell
-        btnArea.innerHTML = "X";
 
-    })
+
+        if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
+            alert("tricheur! vous perdez votre tour")
+            changeTurn();
+        }
+        else {
+
+            if (playerTurnMsg.className == "joueur1") {
+                btnArea.innerHTML = "X";
+
+            }
+            else if (playerTurnMsg.className == "joueur2") {
+                btnArea.innerHTML = "O";
+            }
+
+            counter++;
+
+            changeTurn();
+            endGameEvaluation(counter);
+
+        }
+
+    }
+    )
+
 });
