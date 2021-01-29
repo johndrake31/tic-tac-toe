@@ -23,6 +23,24 @@ function changeTurn() {
     }
 }
 
+/** 
+ * Create function that checks if one of the 8 
+ * winning possibilities happened 
+ * or if all moves are finished
+ * The winning possibilities from the array indexes are:
+ * Horizontally => 
+ * 0, 1, 2;
+ * 3, 4, 5;
+ * 6, 7, 8
+ * Vertically => 
+ * 0, 3, 6;
+ * 1, 4, 7;
+ * 2, 5, 8
+ * Diagonally => 
+ * 0, 4, 8; 
+ * 2, 4, 6
+ */
+
 function endGameEvaluation(counter) {
     if (counter == 9) {
         resultMessage.innerHTML = "End of the game!";
