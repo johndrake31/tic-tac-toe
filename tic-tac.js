@@ -1,8 +1,14 @@
 const tdClickArea = document.querySelectorAll("td");
 const playerTurnMsg = document.getElementById('player-turn');
 const resultMessage = document.getElementById("resultMessage");
-var theSquaresValues = [];
-var counter = 0;
+const newGameBtn = document.getElementById("new-game");
+newGameBtn.disabled = true;
+let theSquaresValues = [];
+let counter = 0;
+let winConditionsH = ["012", "345", "678", ]
+let winConditionsV = ["036", "147", "258", ]
+let winConditionsD = ["048", "246", ]
+
 
 //Game vars
 let joueur1Turn = true;
@@ -44,12 +50,16 @@ function changeTurn() {
 function endGameEvaluation(counter) {
     if (counter == 9) {
         resultMessage.innerHTML = "End of the game!";
+        newGameBtn.disabled = false;
     }
 }
 
 function resetGame() {
     tdClickArea.forEach(item => {
         item.innerHTML = "";
+        counter = 0;
+        changeTurn();
+        resultMessage.innerHTML = "";
     })
 }
 
@@ -64,8 +74,7 @@ tdClickArea.forEach(item => {
         let btnArea = e.target;
 
         if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
-            alert("tricheur! vous perdez votre tour")
-            changeTurn();
+            alert("tricheur! Choisi une autre case")
         } else {
             if (joueur1Turn) {
                 btnArea.innerHTML = "X";
@@ -75,6 +84,11 @@ tdClickArea.forEach(item => {
             counter++;
             changeTurn();
             endGameEvaluation(counter);
+
         }
     })
 });
+
+newGameBtn.addEventListener("click", () => {
+    resetGame();
+})
