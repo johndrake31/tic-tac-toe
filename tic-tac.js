@@ -1,6 +1,6 @@
 const tdClickArea = document.querySelectorAll("td");
 const playerTurnMsg = document.getElementById('player-turn');
-const resultMessage = document.getElementById("resultMessage");
+const resultMessage = document.getElementById("root");
 const newGameBtn = document.getElementById("new-game");
 newGameBtn.disabled = true;
 let theSquaresValues = [];
@@ -49,7 +49,7 @@ function changeTurn() {
 
 function endGameEvaluation(counter) {
     if (counter == 9) {
-        resultMessage.innerHTML = "End of the game!";
+        resultMessage.innerHTML = `<div id="resultMessage">End of the game</div>`;
         newGameBtn.disabled = false;
     }
 }
