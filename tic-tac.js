@@ -3,7 +3,8 @@ const playerTurnMsg = document.getElementById('player-turn');
 const resultMessage = document.getElementById("root");
 const newGameBtn = document.getElementById("new-game");
 newGameBtn.disabled = true;
-let theSquaresValues = [];
+let joueur1Sq = [];
+let joueur2Sq = [];
 let counter = 0;
 let winConditionsH = ["012", "345", "678", ]
 let winConditionsV = ["036", "147", "258", ]
@@ -52,6 +53,8 @@ function endGameEvaluation(counter) {
         resultMessage.innerHTML = `<div id="resultMessage">End of the game</div>`;
         newGameBtn.disabled = false;
     }
+    // logic for game win
+
 }
 
 function resetGame() {
@@ -69,6 +72,8 @@ function resetGame() {
  * else game is a tie.
  * 
  */
+
+
 tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
@@ -78,8 +83,10 @@ tdClickArea.forEach(item => {
         } else {
             if (joueur1Turn) {
                 btnArea.innerHTML = "X";
+                joueur1Sq.push(btnArea.getAttribute("value"));
             } else if (joueur2Turn) {
                 btnArea.innerHTML = "O";
+                joueur2Sq.push(btnArea.getAttribute("value"));
             }
             counter++;
             changeTurn();
