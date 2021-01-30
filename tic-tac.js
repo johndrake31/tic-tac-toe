@@ -1,8 +1,10 @@
 const tdClickArea = document.querySelectorAll("td");
 const playerTurnMsg = document.getElementById('player-turn');
 const resultMessage = document.getElementById("resultMessage");
-var theSquaresValues = [];
-var counter = 0;
+let theSquaresValues = [];
+let counter = 0;
+let winConditions = ["012", "345", "678", "036", "147", "258", "048", "246", ]
+
 
 //Game vars
 let joueur1Turn = true;
