@@ -24,6 +24,8 @@ let win = [
 //Game vars
 let joueur1Turn = true;
 let joueur2Turn = false;
+let joueur1Win = false;
+let joueur2Win = false;
 playerTurnMsg.className = "joueur1"
 
 function changeTurn() {
@@ -42,7 +44,13 @@ function changeTurn() {
 
 
 function endGameEvaluation(counter) {
-    if (counter == 9) {
+    if (joueur1Win) {
+        resultMessage.innerHTML = `<div id="resultMessage">Player 1 Wins!! End of the game</div>`;
+        newGameBtn.disabled = false;
+    } else if (joueur2Win) {
+        resultMessage.innerHTML = `<div id="resultMessage">Player 2 Wins!! End of the game</div>`;
+        newGameBtn.disabled = false;
+    } else if (counter == 9) {
         resultMessage.innerHTML = `<div id="resultMessage">End of the game</div>`;
         newGameBtn.disabled = false;
     }
@@ -54,23 +62,19 @@ function resetGame() {
         counter = 0;
         joueur1Sq = [];
         joueur2Sq = [];
+        joueur1Win = false;
+        joueur2Win = false;
         changeTurn();
         resultMessage.innerHTML = "";
     })
 }
 
-/** 
- * Event Listener Logic. Clicks based on turn will return an "X" or "O".
- * if 3 are in a row vertical, diagonal, or horizontal the player wins.
- * else game is a tie.
- * 
- */
-
 
 tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
-        let tempArray;
+        let tempArray1 = [];
+        let tempArray2 = [];
 
         if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
             alert("tricheur! Choisi une autre case")
@@ -78,24 +82,35 @@ tdClickArea.forEach(item => {
             if (joueur1Turn) {
                 btnArea.innerHTML = "X";
                 joueur1Sq.push(btnArea.getAttribute("value"));
-                tempArray = joueur1Sq.join("");
-                console.log(tempArray);
+                tempArray1 = joueur1Sq.join("");
             } else if (joueur2Turn) {
                 btnArea.innerHTML = "O";
                 joueur2Sq.push(btnArea.getAttribute("value"));
+                tempArray2 = joueur2Sq.join("");
             }
             counter++;
             changeTurn();
             endGameEvaluation(counter);
         }
-        if (tempArray.length >= 3) {
+        //
+        if (tempArray1.length >= 3) {
             for (let i = 0; i < 8; i++)
-                if (tempArray.match(win[i])) {
+                if (tempArray1.match(win[i])) {
                     counter = 9;
+                    joueur1Win = true;
                     endGameEvaluation(counter);
-                    alert("you win");
+                    alert("Player 1: You win!");
                 }
+        }
 
+        if (tempArray2.length >= 3) {
+            for (let i = 0; i < 8; i++)
+                if (tempArray2.match(win[i])) {
+                    counter = 9;
+                    joueur2Win = true;
+                    endGameEvaluation(counter);
+                    alert("Player 2: You win!");
+                }
         }
     })
 });
