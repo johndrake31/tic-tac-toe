@@ -9,19 +9,8 @@ let joueur1Sq = [];
 let joueur2Sq = [];
 let counter = 0;
 
-let win = [
-    /(?:^|\W)[0-2][0-2][0-2](?:$|\W)/gm,
-    /(?:^|\W)[3-5][3-5][3-5](?:$|\W)/gm,
-    /(?:^|\W)[6-8][6-8][6-8](?:$|\W)/gm,
-    /(?:^|\W)[036][036][036](?:$|\W)/gm,
-    /(?:^|\W)[147][147][147](?:$|\W)/gm,
-    /(?:^|\W)[258][258][258](?:$|\W)/gm,
-    /(?:^|\W)[048][048][048](?:$|\W)/gm,
-    /(?:^|\W)[246][246][246](?:$|\W)/gm,
-]
-
-
 //Game vars
+let win = ["012", "345", "678", "036", "147", "258", "048", "246"];
 let joueur1Turn = true;
 let joueur2Turn = false;
 let joueur1Win = false;
@@ -42,16 +31,12 @@ function changeTurn() {
     }
 }
 
-
-function endGameEvaluation(counter) {
-    if (joueur1Win) {
+function endGameEvaluation() {
+    if (joueur1Turn) {
         resultMessage.innerHTML = `<div id="resultMessage">Player 1 Wins!! End of the game</div>`;
         newGameBtn.disabled = false;
-    } else if (joueur2Win) {
+    } else if (joueur2Turn) {
         resultMessage.innerHTML = `<div id="resultMessage">Player 2 Wins!! End of the game</div>`;
-        newGameBtn.disabled = false;
-    } else if (counter == 9) {
-        resultMessage.innerHTML = `<div id="resultMessage">End of the game</div>`;
         newGameBtn.disabled = false;
     }
 }
@@ -68,13 +53,22 @@ function resetGame() {
         resultMessage.innerHTML = "";
     })
 }
-
+function winner(player) {
+    for (var i = 0; i < 8; i++) {
+        let won = win[i]
+        let inCommon = player.filter(x => won.includes(x));
+        if (inCommon.length == 3) {
+            endGameEvaluation();
+        }
+    }
+}
 
 tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
         let tempArray1 = [];
         let tempArray2 = [];
+        let player;
 
         if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
             alert("tricheur! Choisi une autre case")
@@ -82,35 +76,23 @@ tdClickArea.forEach(item => {
             if (joueur1Turn) {
                 btnArea.innerHTML = "X";
                 joueur1Sq.push(btnArea.getAttribute("value"));
-                tempArray1 = joueur1Sq.join("");
+                player = joueur1Sq;
+
             } else if (joueur2Turn) {
                 btnArea.innerHTML = "O";
                 joueur2Sq.push(btnArea.getAttribute("value"));
-                tempArray2 = joueur2Sq.join("");
+                player = joueur2Sq;
             }
-            counter++;
-            changeTurn();
-            endGameEvaluation(counter);
         }
-        //
-        if (tempArray1.length >= 3) {
-            for (let i = 0; i < 8; i++)
-                if (tempArray1.match(win[i])) {
-                    counter = 9;
-                    joueur1Win = true;
-                    endGameEvaluation(counter);
-                    alert("Player 1: You win!");
-                }
+        if (joueur1Sq.length >= 3 || joueur2Sq.length >= 3) {
+            winner(player);
         }
-
-        if (tempArray2.length >= 3) {
-            for (let i = 0; i < 8; i++)
-                if (tempArray2.match(win[i])) {
-                    counter = 9;
-                    joueur2Win = true;
-                    endGameEvaluation(counter);
-                    alert("Player 2: You win!");
-                }
+        counter++;
+        changeTurn();
+        // Here we end the game if nobody won until the last posibble move
+        if (counter == 10) {
+            resultMessage.innerHTML = `<div id="resultMessage">End of the game</div>`;
+            newGameBtn.disabled = false;
         }
     })
 });
