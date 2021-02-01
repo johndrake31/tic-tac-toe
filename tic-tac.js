@@ -2,7 +2,6 @@ const tdClickArea = document.querySelectorAll("td");
 const playerTurnMsg = document.getElementById('player-turn');
 const resultMessage = document.getElementById("root");
 const newGameBtn = document.getElementById("new-game");
-newGameBtn.disabled = true;
 
 let counter = 0;
 
@@ -15,6 +14,7 @@ let joueur2Win = false;
 let joueur1Sq = [];
 let joueur2Sq = [];
 playerTurnMsg.className = "joueur1"
+let gameWon = false;
 
 function changeTurn() {
     if (joueur1Turn) {
@@ -33,10 +33,10 @@ function changeTurn() {
 function endGameEvaluation() {
     if (joueur1Turn) {
         resultMessage.innerHTML = `<div id="resultMessage">Player 1 Wins!! End of the game</div>`;
-        newGameBtn.disabled = false;
+        gameWon = true;
     } else if (joueur2Turn) {
         resultMessage.innerHTML = `<div id="resultMessage">Player 2 Wins!! End of the game</div>`;
-        newGameBtn.disabled = false;
+        gameWon = true;
     }
 }
 
@@ -48,10 +48,12 @@ function resetGame() {
         joueur2Sq = [];
         joueur1Win = false;
         joueur2Win = false;
+        gameWon = false;
         changeTurn();
         resultMessage.innerHTML = "";
     })
 }
+
 function winner(player) {
     for (var i = 0; i < 8; i++) {
         let won = win[i]
@@ -65,8 +67,6 @@ function winner(player) {
 tdClickArea.forEach(item => {
     item.addEventListener('click', e => {
         let btnArea = e.target;
-        let tempArray1 = [];
-        let tempArray2 = [];
         let player;
 
         if (btnArea.innerHTML == "X" || btnArea.innerHTML == "O") {
@@ -89,9 +89,8 @@ tdClickArea.forEach(item => {
         counter++;
         changeTurn();
         // Here we end the game if nobody won until the last posibble move
-        if (counter == 9) {
+        if (counter == 9 && gameWon == false) {
             resultMessage.innerHTML = `<div id="resultMessage">End of the game</div>`;
-            newGameBtn.disabled = false;
         }
     })
 });
