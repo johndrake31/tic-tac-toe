@@ -3,10 +3,7 @@ const playerTurnMsg = document.getElementById('player-turn');
 const resultMessage = document.getElementById("root");
 const newGameBtn = document.getElementById("new-game");
 newGameBtn.disabled = true;
-//Test Arrays
 
-let joueur1Sq = [];
-let joueur2Sq = [];
 let counter = 0;
 
 //Game vars
@@ -15,6 +12,8 @@ let joueur1Turn = true;
 let joueur2Turn = false;
 let joueur1Win = false;
 let joueur2Win = false;
+let joueur1Sq = [];
+let joueur2Sq = [];
 playerTurnMsg.className = "joueur1"
 
 function changeTurn() {
@@ -90,7 +89,7 @@ tdClickArea.forEach(item => {
         counter++;
         changeTurn();
         // Here we end the game if nobody won until the last posibble move
-        if (counter == 10) {
+        if (counter == 9) {
             resultMessage.innerHTML = `<div id="resultMessage">End of the game</div>`;
             newGameBtn.disabled = false;
         }
