@@ -64,6 +64,7 @@ animation: anim1 10s forwards ease-in-out;
 }
 
 h1{
+    padding-left: 15px;
     text-align: center;
 }
 h2{
@@ -75,7 +76,6 @@ h3{
 .container{
     max-width: 310px;
     margin: 20px auto;  /* Modified to auto */
-    
 }
 .table-style{
     /* outer table styles */
@@ -83,6 +83,7 @@ h3{
     width: 300px;
     height: 300px;
     border: 8px solid rgb(123, 64, 171);
+    margin-bottom: 2rem;
     
 }
 td{

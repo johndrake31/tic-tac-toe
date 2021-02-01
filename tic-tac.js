@@ -17,12 +17,12 @@ playerTurnMsg.className = "joueur1"
 let gameWon = false;
 
 function changeTurn() {
-    if (joueur1Turn) {
+    if (joueur1Turn && !gameWon) {
         joueur1Turn = false;
         joueur2Turn = true;
         playerTurnMsg.innerHTML = "Joueur 2 : c'est votre tour"
         playerTurnMsg.className = "joueur2"
-    } else {
+    } else if (joueur2Turn && !gameWon) {
         joueur1Turn = true;
         joueur2Turn = false;
         playerTurnMsg.innerHTML = "Joueur 1 : c'est votre tour"
@@ -34,9 +34,11 @@ function endGameEvaluation() {
     if (joueur1Turn) {
         resultMessage.innerHTML = `<div id="resultMessage">Player 1 Wins!! End of the game</div>`;
         gameWon = true;
+        playerTurnMsg.innerHTML = "";
     } else if (joueur2Turn) {
         resultMessage.innerHTML = `<div id="resultMessage">Player 2 Wins!! End of the game</div>`;
         gameWon = true;
+        playerTurnMsg.innerHTML = "";
     }
 }
 
