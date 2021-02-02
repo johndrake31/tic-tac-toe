@@ -20,23 +20,23 @@ function changeTurn() {
     if (joueur1Turn && !gameWon) {
         joueur1Turn = false;
         joueur2Turn = true;
-        playerTurnMsg.innerHTML = "Joueur 2 : c'est votre tour"
+        playerTurnMsg.innerHTML = "P2: Your Turn !"
         playerTurnMsg.className = "joueur2"
     } else if (joueur2Turn && !gameWon) {
         joueur1Turn = true;
         joueur2Turn = false;
-        playerTurnMsg.innerHTML = "Joueur 1 : c'est votre tour"
+        playerTurnMsg.innerHTML = "P1: Your Turn !"
         playerTurnMsg.className = "joueur1"
     }
 }
 
 function endGameEvaluation() {
     if (joueur1Turn) {
-        resultMessage.innerHTML = `<div id="resultMessage">Player 1 Wins!! End of the game</div>`;
+        resultMessage.innerHTML = `<div id="resultMessage">Player 1 Wins! Game Over</div>`;
         gameWon = true;
         playerTurnMsg.innerHTML = "";
     } else if (joueur2Turn) {
-        resultMessage.innerHTML = `<div id="resultMessage">Player 2 Wins!! End of the game</div>`;
+        resultMessage.innerHTML = `<div id="resultMessage">Player 2 Wins! Game Over</div>`;
         gameWon = true;
         playerTurnMsg.innerHTML = "";
     }
