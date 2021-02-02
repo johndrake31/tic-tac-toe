@@ -15,7 +15,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
 
 
 </head>
@@ -23,36 +23,40 @@
 <body>
 
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Morpion</h1>
-            <table class="table-style">
-                <tr>
-                    <td value="0"></td>
-                    <td value="1"></td>
-                    <td value="2"></td>
-                </tr>
-                <tr>
-                    <td value="3"></td>
-                    <td value="4"></td>
-                    <td value="5"></td>
-                </tr>
-                <tr>
-                    <td value="6"></td>
-                    <td value="7"></td>
-                    <td value="8"></td>
-                </tr>
-            </table>
-            <button id="new-game">New Game</button>
-            <div id="player-turn"></div>
-            <div id="root">
-            <div id="resultMessage"></div>
-           
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Morpion</h1>
+                <div id="result"></div>
+                <table class="table-style">
+                    <tr>
+                        <td value="0"></td>
+                        <td value="1"></td>
+                        <td value="2"></td>
+                    </tr>
+                    <tr>
+                        <td value="3"></td>
+                        <td value="4"></td>
+                        <td value="5"></td>
+                    </tr>
+                    <tr>
+                        <td value="6"></td>
+                        <td value="7"></td>
+                        <td value="8"></td>
+                    </tr>
+                </table>
+                <button id="new-game">New Game</button>
+                <div id="player-turn"></div>
+                <div id="p1"></div>
+                <div id="p2"></div>
+                <div id="total"></div>
+                <div id="root">
+                    <div id="resultMessage"></div>
+
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-        
+
 
         <!-- Add a temp text here in resultMessage 
         "Fin de la partie" in order to test css styles. 
