@@ -6,29 +6,29 @@ const result = document.getElementById("result");
 const p1 = document.getElementById('p1');
 const p2 = document.getElementById('p2');
 const total = document.getElementById('total');
-var p1v = JSON.parse(localStorage.playerOneVictories)
-p1.innerHTML = "Le joueur 1 a gagné " + p1v + " fois";
-var p2v = JSON.parse(localStorage.playerTwoVictories)
-p2.innerHTML = "Le joueur 2 a gagné " + p2v + " fois";
-var tg = JSON.parse(localStorage.totalGames);
-total.innerHTML = "Nombre total de parties jouées: " + tg;
-
 let counter = 0;
-var totalGames = JSON.parse(localStorage.totalGames);
-if (totalGames == undefined) {
 
+
+if (localStorage.getItem('totalGames') == "undefined") {
+    console.log("here");
     var playerOneVictories = 0;
-    localStorage.playerOneVictories = JSON.stringify(playerOneVictories);
-    var totalGames = 0;
-    localStorage.totalGames = JSON.stringify(totalGames);
     var playerTwoVictories = 0;
+    var totalGames = 0;
+    localStorage.playerOneVictories = JSON.stringify(playerOneVictories);
+    localStorage.totalGames = JSON.stringify(totalGames);
     localStorage.playerTwoVictories = JSON.stringify(playerTwoVictories);
+
+
 }
 else {
     var playerOneVictories = JSON.parse(localStorage.playerOneVictories);
     var playerTwoVictories = JSON.parse(localStorage.playerTwoVictories);
     var totalGames = JSON.parse(localStorage.totalGames);
 }
+
+p1.innerHTML = "Le joueur 1 a gagné " + playerOneVictories + " fois"
+p2.innerHTML = "Le joueur 2 a gagné " + playerTwoVictories + " fois";
+total.innerHTML = "Nombre total de parties jouées: " + totalGames;
 
 //Game vars
 let win = ["012", "345", "678", "036", "147", "258", "048", "246"];
