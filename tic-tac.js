@@ -8,6 +8,16 @@ const p2 = document.getElementById('p2');
 const total = document.getElementById('total');
 let counter = 0;
 
+//Game vars
+let win = ["012", "345", "678", "036", "147", "258", "048", "246"];
+let joueur1Turn = true;
+let joueur2Turn = false;
+let joueur1Win = false;
+let joueur2Win = false;
+let joueur1Sq = [];
+let joueur2Sq = [];
+playerTurnMsg.className = "joueur1"
+let gameWon = false;
 
 if (!localStorage.hasOwnProperty("totalGames")) {
     console.log("aca");
@@ -19,19 +29,13 @@ if (!localStorage.hasOwnProperty("totalGames")) {
     localStorage.setItem("totalGames", totalGames);
 
 }
-p1.innerHTML = "Le joueur 1 a gagné " + localStorage.getItem("playerOneVictories") + " fois";
-p2.innerHTML = "Le joueur 2 a gagné " + localStorage.getItem("playerTwoVictories") + " fois";
-total.innerHTML = "Nombre total de parties jouées: " + localStorage.getItem("totalGames");
-//Game vars
-let win = ["012", "345", "678", "036", "147", "258", "048", "246"];
-let joueur1Turn = true;
-let joueur2Turn = false;
-let joueur1Win = false;
-let joueur2Win = false;
-let joueur1Sq = [];
-let joueur2Sq = [];
-playerTurnMsg.className = "joueur1"
-let gameWon = false;
+refreshScores();
+
+function refreshScores() {
+    p1.innerHTML = "Le joueur 1 a gagné " + localStorage.getItem("playerOneVictories") + " fois";
+    p2.innerHTML = "Le joueur 2 a gagné " + localStorage.getItem("playerTwoVictories") + " fois";
+    total.innerHTML = "Nombre total de parties jouées: " + localStorage.getItem("totalGames");
+}
 
 function changeTurn() {
     if (joueur1Turn && !gameWon) {
@@ -60,6 +64,7 @@ function updateScore(player) {
         localStorage.setItem("playerTwoVictories", playerTwoVictories);
         localStorage.setItem("totalGames", totalGames);
     }
+    refreshScores();
 }
 function endGameEvaluation() {
     if (joueur1Turn) {
@@ -83,8 +88,8 @@ function resetGame() {
         joueur2Sq = [];
         joueur1Win = false;
         joueur2Win = false;
+        joueur1Turn = true;
         gameWon = false;
-        changeTurn();
         resultMessage.innerHTML = "";
     })
 }
