@@ -6,30 +6,22 @@ const result = document.getElementById("result");
 const p1 = document.getElementById('p1');
 const p2 = document.getElementById('p2');
 const total = document.getElementById('total');
-var p1v = JSON.parse(localStorage.playerOneVictories)
-p1.innerHTML = "Le joueur 1 a gagné " + p1v + " fois";
-var p2v = JSON.parse(localStorage.playerTwoVictories)
-p2.innerHTML = "Le joueur 2 a gagné " + p2v + " fois";
-var tg = JSON.parse(localStorage.totalGames);
-total.innerHTML = "Nombre total de parties jouées: " + tg;
-
 let counter = 0;
-var totalGames = JSON.parse(localStorage.totalGames);
-if (totalGames == undefined) {
 
-    var playerOneVictories = 0;
-    localStorage.playerOneVictories = JSON.stringify(playerOneVictories);
-    var totalGames = 0;
-    localStorage.totalGames = JSON.stringify(totalGames);
-    var playerTwoVictories = 0;
-    localStorage.playerTwoVictories = JSON.stringify(playerTwoVictories);
-}
-else {
-    var playerOneVictories = JSON.parse(localStorage.playerOneVictories);
-    var playerTwoVictories = JSON.parse(localStorage.playerTwoVictories);
-    var totalGames = JSON.parse(localStorage.totalGames);
-}
 
+if (!localStorage.hasOwnProperty("totalGames")) {
+    console.log("aca");
+    var playerOneVictories = "0";
+    var playerTwoVictories = "0";
+    var totalGames = "0";
+    localStorage.setItem("playerOneVictories", playerOneVictories);
+    localStorage.setItem("playerTwoVictories", playerTwoVictories);
+    localStorage.setItem("totalGames", totalGames);
+
+}
+p1.innerHTML = "Le joueur 1 a gagné " + localStorage.getItem("playerOneVictories") + " fois";
+p2.innerHTML = "Le joueur 2 a gagné " + localStorage.getItem("playerTwoVictories") + " fois";
+total.innerHTML = "Nombre total de parties jouées: " + localStorage.getItem("totalGames");
 //Game vars
 let win = ["012", "345", "678", "036", "147", "258", "048", "246"];
 let joueur1Turn = true;
@@ -57,19 +49,18 @@ function changeTurn() {
 function updateScore(player) {
     console.log("this point")
     if (player == joueur1Turn) {
-        playerOneVictories = playerOneVictories + 1;
-        localStorage.playerOneVictories = JSON.stringify(playerOneVictories);
-        totalGames = totalGames + 1;
-        localStorage.totalGames = JSON.stringify(totalGames);
-    } else {
-        playerTwoVictories = playerTwoVictories + 1;
-        localStorage.playerTwoVictories = JSON.stringify(playerTwoVictories);
-        totalGames += totalGames;
-        localStorage.totalGames = JSON.stringify(totalGames);
+        playerOneVictories = parseInt(localStorage.getItem("playerOneVictories")) + 1;
+        totalGames = parseInt(localStorage.getItem("totalGames")) + 1;
+        localStorage.setItem("playerOneVictories", playerOneVictories);
+        localStorage.setItem("totalGames", totalGames);
 
+    } else {
+        playerTwoVictories = parseInt(localStorage.getItem("playerTwoVictories")) + 1;
+        totalGames = parseInt(localStorage.getItem("totalGames")) + 1;
+        localStorage.setItem("playerTwoVictories", playerTwoVictories);
+        localStorage.setItem("totalGames", totalGames);
     }
 }
-
 function endGameEvaluation() {
     if (joueur1Turn) {
         resultMessage.innerHTML = `<div id="resultMessage">Player 1 Wins! Game Over</div>`;
